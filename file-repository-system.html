@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Archive System</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #2c3e50;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar h1 {
+      font-size: 20px;
+    }
+
+    .toggle-btn {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* Layout */
+    .container {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #34495e;
+      color: #fff;
+      padding: 20px;
+      transition: transform 0.3s ease;
+    }
+    .sidebar h2 {
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .sidebar ul {
+      list-style: none;
+    }
+    .sidebar ul li {
+      padding: 10px 0;
+      cursor: pointer;
+    }
+    .sidebar ul li:hover {
+      background: #3d566e;
+      border-radius: 5px;
+    }
+
+    /* Dashboard */
+    .dashboard {
+      flex: 1;
+      background: #f4f6f9;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .dashboard h2 {
+      margin-bottom: 20px;
+    }
+
+    /* File Cards */
+    .files {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .file-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .file-card:hover {
+      transform: translateY(-5px);
+    }
+    .file-card h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+    .file-card p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .toggle-btn {
+        display: block;
+      }
+      .sidebar {
+        position: fixed;
+        top: 60px; /* below navbar */
+        left: 0;
+        height: 100%;
+        transform: translateX(-100%);
+        z-index: 1000;
+      }
+      .sidebar.active {
+        transform: translateX(0);
+      }
+      .dashboard {
+        flex: 1;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>File Archive</h1>
+    <span class="toggle-btn" onclick="toggleSidebar()">☰</span>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+      <h2>Departments</h2>
+      <ul>
+        <li>HR</li>
+        <li>Finance</li>
+        <li>IT</li>
+        <li>Marketing</li>
+      </ul>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard">
+      <h2>Dashboard</h2>
+      <div class="files">
+        <div class="file-card">
+          <h3>Employee Records</h3>
+          <p>HR Department</p>
+        </div>
+        <div class="file-card">
+          <h3>Financial Report Q1</h3>
+          <p>Finance Department</p>
+        </div>
+        <div class="file-card">
+          <h3>System Backup Logs</h3>
+          <p>IT Department</p>
+        </div>
+        <div class="file-card">
+          <h3>Campaign Strategy</h3>
+          <p>Marketing Department</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+    }
+  </script>
+</body>
+</html>
